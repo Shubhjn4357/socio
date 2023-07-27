@@ -1,0 +1,50 @@
+.bg-login{
+  background: url("../../assets/7843788.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat:no-repeat;
+}
+
+.auth-card{
+    padding:2rem;
+    min-width: 20rem;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+    box-shadow: 2px 2px 5px 10px #212121,
+                -2px -2px 5px 10px #cccccc,
+                inset 2px 2px 5px 10px #cccccc,
+                inset -2px -2px 5px 10px #212121,
+}
+.google-button {
+    max-width: 19rem;
+    display: flex;
+    padding: 0.5rem 1.4rem;
+    font-size: 0.8rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    align-items: center;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    gap: 0.75rem;
+    color: rgb(65, 63, 63);
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .6s ease;
+  }
+  
+  .google-button svg {
+    height: 24px;
+  }
+  
+  .google-button:hover {
+    transform: scale(1.02);
+  }
+  .form-input{
+    padding: 0.5rem;
+  }
+  .form-input:focus-within {
+    border-bottom: 1px solid black;
+  }
