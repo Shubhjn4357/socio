@@ -1,3 +1,97 @@
+#components-dropdown-demo-arrow-center .ant-btn {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.ant-row-rtl #components-dropdown-demo-arrow-center .ant-btn {
+  margin-right: 0;
+  margin-bottom: 8px;
+  margin-left: 8px;
+}
+.ant-menu-item.side-menu-item{
+  padding:2rem 1rem;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 1.5rem;
+}
+.ant-menu-item.ant-menu-item-selected.chat-item{
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.170);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.ant-menu-item .ant-menu-title-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ant-menu-item.ant-menu-item-selected.side-menu-item.dark{
+  background: linear-gradient(-30deg,#b8a604,#cdec5c);
+  color:rgb(36, 36, 36);
+}
+.ant-menu-item.ant-menu-item-selected.side-menu-item.light{
+  background: linear-gradient(-30deg,#0467b8,#5ce2ec);
+  color:rgb(255, 255, 255);
+}
+.ant-input-affix-wrapper.chat-input{
+  border: none;
+  background: rgba(255,255,255, 0.170);
+}
+.ant-input-affix-wrapper.chat-input > .ant-input-prefix > .anticon{
+  font-size:1.3rem;
+  padding: 0.2rem;
+}
+.ant-input-affix-wrapper.chat-input > input.ant-input{
+  background: transparent;
+  padding:0.5rem;
+  width:20rem;
+}
+.ant-input-affix-wrapper.chat-input > input.ant-input::placeholder{
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+.chat-content{
+  overflow-y: scroll;
+  height:20rem;
+}
+.message{
+  display:flex;
+  width:40%;
+  justify-content: center;
+  margin-inline:0.5rem;
+}
+.message.sent{
+  margin-left: auto;
+}
+.message.recieve{
+  margin-right:auto;
+}
+.message.sent .message-content{
+  border-radius: 1rem 1rem 1rem;
+  margin-left: auto;
+}
+.message.recieve .message-content{
+  border-radius: 0 1rem 1rem 1rem;
+  margin-right:auto;
+  margin:0.5rem 0;
+}
+
+.message .avatar{
+  width:100%;
+  height:100%;
+  margin-right: 0.2rem;
+}
+.message .message-content{
+  word-wrap: break-word;
+  padding:1rem;
+}
+.message .message-content.dark{
+  background: linear-gradient(to right,rgb(0, 139, 128),rgba(0, 112, 163, 0.349));
+}
+.message .message-content.light{
+  background: linear-gradient(to right,rgba(24, 253, 234, 0.123),rgba(70, 196, 255, 0.767));
+}
 .loader {
     --background: linear-gradient(135deg, #23C4F8, #275EFE);
     --shadow: rgba(39, 94, 254, 0.28);

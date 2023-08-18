@@ -1,5 +1,5 @@
 import { Button,Checkbox,Divider,Form,Input} from "antd";
-import { EyeInvisibleFilled, EyeTwoTone, LockOutlined, MailOutlined } from "@ant-design/icons";
+import { EyeInvisibleFilled, EyeTwoTone, LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { useForm } from "antd/es/form/Form";
 import { NavLink, useNavigate } from "react-router-dom";
 import { formfield } from "./auth.interface";

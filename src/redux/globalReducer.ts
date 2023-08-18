@@ -1,13 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 import { User } from 'firebase/auth'
+import { DocumentData } from 'firebase/firestore'
 
-
-interface GlobalState{
+// interface UserData{
+//   uname:string,
+//   name:string,
+//   avatar:string,
+//   createdAt:string,
+//   uid:string,
+// }
+export interface GlobalState{
     loggedin?:boolean,
     firstUser?:boolean,
-    theme?:string,
-    user?:User|null|undefined
+    theme?:boolean,
+    user?:User|null|undefined,
+    userData?:DocumentData|null|undefined,
 }
 
 // Define the initial state using that type
@@ -15,8 +23,9 @@ const initialState:{value:GlobalState} = {
   value:{
     loggedin:false,
     firstUser:true,
-    theme:'light',
-    user:null
+    theme:false,
+    user:null,
+    userData:null
   }
 }
 
@@ -28,10 +37,13 @@ export const globalSlice = createSlice({
     manageState: (state, action: PayloadAction<GlobalState>) => {
       state.value={...state.value,...action.payload}
     },
+    changeTheme:(state)=>{
+      state.value.theme=!state.value.theme;
+    }
   },
 })
 
-export const { manageState } = globalSlice.actions
+export const { manageState,changeTheme } = globalSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const rootState = (state: RootState) => state.state.value

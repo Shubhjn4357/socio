@@ -28,11 +28,10 @@ body {
   align-items: center;
 }
 .glassmorphism{
-  background: rgba(212, 212, 212, 0.5);
-  backdrop-filter: blur(10px);
-  background:linear-gradient(45deg, rgba(212, 212, 212, 0.5),rgba(201, 201, 201, 0.5));
-  box-shadow: inset 2px 2px 10px #868686ab,
-              2px 2px 10px #868686ab;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 .blu-g{
   background:linear-gradient(to right ,#04c7d4,#002f5a);

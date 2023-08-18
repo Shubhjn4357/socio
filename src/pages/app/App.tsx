@@ -1,60 +1,78 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../../firebase.config";
+import { Outlet, useNavigate } from "react-router-dom";
+import { auth, db } from "../../../firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useAppDispatch } from "../../redux/redux.hook";
+import { useAppDispatch, useAppSelector } from "../../redux/redux.hook";
 import { manageState } from "../../redux/globalReducer";
-import { Loader } from "../../component";
-import { Button, ConfigProvider,Layout,ThemeConfig, Typography, theme} from "antd";
+import {  Loader, Navbar, Sidebar, Userinfo } from "../../component";
+import { ConfigProvider,Layout,ThemeConfig,theme} from "antd";
 import { Content } from "antd/es/layout/layout";
+import { collection, query, where} from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 const App=() => {
   const [user,loading]=useAuthState(auth);
-  const {Text}=Typography;
+  const [UserInfo,setOpenUserDetail]=useState(false);
   const {darkAlgorithm,defaultAlgorithm}=theme; 
-  const [isDark,setDark]=useState("light");
   const navigate=useNavigate();
   const dispatch=useAppDispatch();
-  useEffect(()=>{
+  const state=useAppSelector((state)=>state.state.value);
+  const collectionRef = collection(db,`users`);
+  const snapquery = query(collectionRef,where('uid', '==',user?user.uid:""));
+    const [snapshot] = useCollection(snapquery,{
+      snapshotListenOptions: { includeMetadataChanges: true },
+    });
+  useEffect(()=>{ 
     const checkUser=async()=>{
       if(!loading){
         if(!user){
           return navigate("/auth")
         }
       }
-      dispatch(manageState({loggedin:user?true:false}))
-      return navigate("/")
+      if(!user?.displayName || !user?.photoURL||snapshot?.empty){
+          setOpenUserDetail(true);
+        }
+      else{
+        setOpenUserDetail(false);
+      }
+      dispatch(manageState({loggedin:user?true:false,user:user}))
     }
     checkUser();
-  },[loading,dispatch,navigate,user])
+  },[loading, dispatch, navigate, user, snapshot])
   const lightToken={
     algorithm:defaultAlgorithm,
     "token":{
-      "colorText": "rgb(46, 124, 242)",
+      "colorText": "rgb(44, 44, 44)",
       "colorPrimary": "rgb(46, 124, 242)",
+      "colorBgContainer":"rgb(255,255,255)",
       "fontSize": 15,
       "borderRadius": 8,
       "fontFamily":"-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji",
-    },
+    }
   }
   const darkToken:ThemeConfig={
     algorithm:darkAlgorithm,
     "token":{
-      "colorText": "rgb(242, 180, 46)",
+      "colorText": "rgb(209, 209, 209)",
       "colorPrimary": "rgb(242, 180, 46)",
+      "colorBgContainer":"rgb(36, 36, 36)",
       "fontSize": 15,
       "borderRadius": 8,
       "fontFamily":"-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji",
     },
   }
   return (
-    <ConfigProvider theme={isDark==="dark"?darkToken:lightToken}>
-     <Layout className="layout">
-      <Content className="d-center h-screen">
-        {loading?<Loader />:<div>
-          <Text>welcome</Text>
-          <Button type="primary" onClick={()=>setDark((pre)=>pre==="light"?"dark":"light")}>Theme {isDark}</Button>
-        </div>}
+    <ConfigProvider theme={state.theme?darkToken:lightToken}>
+     <Layout className={`layout  ${state.theme?"bg-App-dark":"bg-App"}`}>
+      <Content className="text-center">
+        {loading?<Loader />:<>
+          <Navbar/>
+          {UserInfo?<Userinfo close={()=>setOpenUserDetail(false)}/>:""}
+          <Layout className="bg-transparent">
+            <Sidebar />
+            <Outlet />
+          </Layout>
+        </>}
       </Content>
     </Layout>
     </ConfigProvider>

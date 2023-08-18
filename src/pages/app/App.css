@@ -1,0 +1,38 @@
+.bg-App{
+    background: url("../../assets/5153882.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat:no-repeat;
+  }
+.bg-App-dark{
+    background:url("../../assets/bg-dark1.jpg"); 
+    background-size: cover;
+    background-position: center center;
+    background-repeat:no-repeat;
+  }
+  .layout{
+    height:100vh;
+    width: 100vw;
+    overflow-y: scroll;
+  }
+  .feed-form{
+    width:100%;
+    display: block;
+    margin:0.5rem 0;
+  }
+  .feed-form .feed-input{
+    padding: 0.3rem 1rem;
+    resize:none;
+  }
+  .feed-form .feed-input:focus{
+    box-shadow: 0 0 5px #3a3a3ac5;
+  }
+  .feed-form .feed-input::placeholder{
+    color: #838383;
+  }
+  .btn-bounce:active{
+    transform: scale(.95);
+  }
+  .ant-card .ant-card-body{
+    padding: 0.5rem;
+  }

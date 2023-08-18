@@ -10,4 +10,7 @@ export default {
     },
   },
   plugins: [],
+  corePlugins: {
+    preflight: false // <== disable to resolve conflict between Antd
+  },
 }

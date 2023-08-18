@@ -1,5 +1,7 @@
 import  {createBrowserRouter} from "react-router-dom";
 import { App, Auth, ErrorPage, SignIn, SignUp } from "./pages";
+import Feed from "./pages/app/Feed";
+import { ChatManager } from "./component";
 
 
 
@@ -7,6 +9,16 @@ import { App, Auth, ErrorPage, SignIn, SignUp } from "./pages";
     {
       path: "/",
       element: <App/>,
+      children:[
+        {
+          path: "/",
+          element: <Feed/>
+        },
+        {
+          path: "/chat",
+          element: <ChatManager/>
+        }
+      ],
       errorElement:<ErrorPage />
     },
     {

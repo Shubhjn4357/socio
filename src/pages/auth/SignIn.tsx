@@ -8,8 +8,8 @@ import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-fireba
 import { auth } from "../../../firebase.config";
 
 const SignIn=()=>{
-  const [signInWithEmailAndPassword,user,loading,error,] = useSignInWithEmailAndPassword(auth);
-  const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword,user] = useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
     const [form]=useForm<formfield>();
     const navigate=useNavigate();
   const onFinish=async(value:formfield)=>{

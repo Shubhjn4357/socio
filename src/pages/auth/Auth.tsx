@@ -13,12 +13,11 @@ const Auth=()=>{
   useEffect(()=>{
     const checkUser=async()=>{
       if(!loading){
-        if(!user){
-          return navigate("/auth")
+        if(user){
+          return navigate("/")
         }
       }
       dispatch(manageState({loggedin:user?true:false}))
-      return navigate("/")
     }
     checkUser();
   },[loading,dispatch,navigate,user])

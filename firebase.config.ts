@@ -2,6 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -17,7 +19,8 @@ const firebaseConfig = {
   storageBucket: "social-app-c5f59.appspot.com",
   messagingSenderId: "899478346610",
   appId: "1:899478346610:web:ff393bcbb55a98c79e5beb",
-  measurementId: "G-TRMW0MK62B"
+  measurementId: "G-TRMW0MK62B",
+
 };
 
 // Initialize Firebase
@@ -25,4 +28,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 // Initialize Authenticater
 const auth = getAuth(app);
-export {app,analytics,auth}
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+export {app,analytics,auth,db,storage}
